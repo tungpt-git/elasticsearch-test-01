@@ -1,0 +1,37 @@
+PUT videos
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "analysis": {
+        "analyzer": {
+          "my_analyzer": {
+            "tokenizer": "vi_tokenizer",
+            "char_filter": [
+              "html_strip"
+            ],
+            "filter": [
+              "icu_folding"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "segments": {
+        "type": "nested"
+      },
+      "name": {
+        "type": "text",
+        "analyzer": "my_analyzer"
+      },
+      "segments.text": {
+        "type": "text",
+        "analyzer": "my_analyzer"
+      }
+    }
+  }
+}

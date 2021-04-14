@@ -1,0 +1,12 @@
+curl -H "Content-Type: application/json" -XPOST "localhost:9200/videos/_bulk?pretty&refresh" --data-binary "@data.json"
+
+curl -X DELETE "localhost:9200/videos?pretty"
+
+GET videos/_search
+{
+   "query":{
+      "query_string":{
+         "query": "thế giới mạng" 
+      }
+   }
+}
