@@ -31,7 +31,13 @@ const convert = async () => {
   for await (const line of readInterface) {
     const [name, start, end, text] = line.split("-");
     if (!obj[name]) {
-      obj[name] = { name, segments: [] };
+      obj[name] = {
+        name,
+        uploadedDate: new Date().toISOString(),
+        url: "https://youtu.be/qEBPEehV_iU",
+        thumbnail: "http://i3.ytimg.com/vi/qEBPEehV_iU/maxresdefault.jpg",
+        segments: [],
+      };
     }
     obj[name].segments.push({
       start: +start,
@@ -56,26 +62,26 @@ convert().then(() => {
       }
     );
   });
-});
 
-readInterface = readline.createInterface({
-  input: fs.createReadStream(`${path.temp}`),
-  console: false,
-});
+  readInterface = readline.createInterface({
+    input: fs.createReadStream(`${path.temp}`),
+    console: false,
+  });
 
-let id = 1;
+  let id = 1;
 
-readInterface.on("line", (line) => {
-  fs.appendFile(
-    `${path.data}`,
-    `${JSON.stringify({ index: { _id: id++ } })}\r\n${line}\r\n`,
-    function (err) {
-      if (err) {
-        // append failed
-        console.log("ERROR", err);
-      } else {
-        // done
+  readInterface.on("line", (line) => {
+    fs.appendFile(
+      `${path.data}`,
+      `${JSON.stringify({ index: { _id: id++ } })}\r\n${line}\r\n`,
+      function (err) {
+        if (err) {
+          // append failed
+          console.log("ERROR", err);
+        } else {
+          // done
+        }
       }
-    }
-  );
+    );
+  });
 });

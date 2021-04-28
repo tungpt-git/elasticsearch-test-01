@@ -19,6 +19,8 @@ services:
       - 9200:9200
       - 9300:9300
     networks: ["stack"]
+    volumes:
+      - ./volumes/elasticsearch
 
   kibana:
     image: docker.elastic.co/kibana/kibana:$ELASTIC_VERSION
