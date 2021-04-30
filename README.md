@@ -51,4 +51,4 @@ PUT videos
 ## bulk data to `videos` index
 
 `rm alias:curl`
-`curl -H "Content-Type: application/json" -XPOST "localhost:9200/videos/_bulk?pretty&refresh" --data-binary "@data.json"`
+`curl -H "Content-Type: application/json" -XPOST "localhost:9200/videos/_bulk?pretty&refresh" --data-binary "@./scripts/data.json"`

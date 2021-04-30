@@ -1,5 +1,6 @@
 const readline = require("readline");
 const fs = require("fs");
+const uuid = require("uuid");
 
 const path = {
   data: "data.json",
@@ -23,7 +24,11 @@ let readInterface = readline.createInterface({
 });
 
 fs.truncate(`${path.temp}`, 0, function () {
-  console.log("done");
+  console.log("truncate temp");
+});
+
+fs.truncate(`${path.data}`, 0, function () {
+  console.log("truncate data");
 });
 
 const obj = {};
@@ -32,6 +37,7 @@ const convert = async () => {
     const [name, start, end, text] = line.split("-");
     if (!obj[name]) {
       obj[name] = {
+        uid: uuid.v4(),
         name,
         uploadedDate: new Date().toISOString(),
         url: "https://youtu.be/qEBPEehV_iU",
