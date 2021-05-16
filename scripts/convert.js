@@ -1,6 +1,7 @@
 const readline = require("readline");
 const fs = require("fs");
 const uuid = require("uuid");
+const metadata = require("./metadata");
 
 const path = {
   data: "data.json",
@@ -36,12 +37,14 @@ const convert = async () => {
   for await (const line of readInterface) {
     const [name, start, end, text] = line.split("-");
     if (!obj[name]) {
+      const { url, thumbnail } = metadata[name] || { url: "", thumbnail: "" };
+      console.log(name, metadata[name]);
       obj[name] = {
         uid: uuid.v4(),
         name,
         uploadedDate: new Date().toISOString(),
-        url: "https://youtu.be/qEBPEehV_iU",
-        thumbnail: "http://i3.ytimg.com/vi/qEBPEehV_iU/maxresdefault.jpg",
+        url,
+        thumbnail,
         segments: [],
       };
     }
