@@ -31,4 +31,10 @@ module.exports = {
     category: ["TS", "19h"],
     duration: 1904,
   },
+  Radio_teen_0409: {
+    url: "https://media.sparemin.com/embed-video/videos/5a/64/f6/f3/5a64f6f3-65fb-42b5-a831-4ffc333e4d86_4990903.mp4",
+    thumbnail: "http://i3.ytimg.com/vi/qEBPEehV_iU/maxresdefault.jpg",
+    category: ["Radio teen"],
+    duration: 1823,
+  },
 };

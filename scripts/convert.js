@@ -37,15 +37,14 @@ const convert = async () => {
   for await (const line of readInterface) {
     const [name, start, end, text] = line.split("-");
     if (!obj[name]) {
-      const { url, thumbnail } = metadata[name] || { url: "", thumbnail: "" };
+      const meta = metadata[name] || { url: "", thumbnail: "" };
       console.log(name, metadata[name]);
       obj[name] = {
         uid: uuid.v4(),
         name,
         uploadedDate: new Date().toISOString(),
-        url,
-        thumbnail,
         segments: [],
+        ...meta
       };
     }
     obj[name].segments.push({
