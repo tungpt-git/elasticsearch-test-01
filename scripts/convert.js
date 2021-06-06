@@ -35,19 +35,18 @@ fs.truncate(`${path.data}`, 0, function () {
 const obj = {};
 const convert = async () => {
   for await (const line of readInterface) {
-    const [name, start, end, text] = line.split("-");
-    if (!obj[name]) {
-      const meta = metadata[name] || { url: "", thumbnail: "" };
-      console.log(name, metadata[name]);
-      obj[name] = {
+    const [_code, start, end, text] = line.split("-");
+    if (!obj[_code]) {
+      const meta = metadata[_code] || { url: "", thumbnail: "" };
+      console.log(_code, metadata[_code]);
+      obj[_code] = {
         uid: uuid.v4(),
-        name,
         uploadedDate: new Date().toISOString(),
         segments: [],
-        ...meta
+        ...meta,
       };
     }
-    obj[name].segments.push({
+    obj[_code].segments.push({
       start: +start,
       end: +end,
       text: text.replace(/\s\s+/g, " ").trim(),
