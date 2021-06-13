@@ -42,6 +42,12 @@ PUT videos
       "name": {
         "type": "text",
         "analyzer": "my_analyzer"
+      },
+      "category": {
+        "type": "keyword"
+      },
+      "broadCastDate": {
+        "type": "date"
       }
     }
   }
